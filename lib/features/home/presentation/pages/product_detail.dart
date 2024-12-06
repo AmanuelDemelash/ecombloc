@@ -18,7 +18,9 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: const Text('Product Detail'),
+        ),
         body: BlocProvider(
           create: (context) =>
               ProductDetailBloc()..add(GetProductDetailEvent(id: widget.id)),
@@ -71,14 +73,9 @@ class _ProductDetailState extends State<ProductDetail> {
                           margin: const EdgeInsets.all(10),
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                  padding: const EdgeInsets.all(20)),
                               onPressed: () {},
                               child: const Text(
                                 "Add to Cart",
-                                style: TextStyle(color: Colors.white),
                               )),
                         )
                       ],

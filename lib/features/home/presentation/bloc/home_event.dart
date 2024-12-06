@@ -8,3 +8,12 @@ abstract class HomeEvent extends Equatable {
 }
 
 class HomeProductEventLoad extends HomeEvent {}
+
+class HomeProductSearchEvent extends HomeEvent {
+  final String title;
+
+  const HomeProductSearchEvent({required this.title});
+
+  @override
+  List<Object> get props => [title];
+}

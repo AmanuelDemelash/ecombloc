@@ -29,3 +29,11 @@ class HomeProductError extends HomeState {
   @override
   List<Object> get props => [message];
 }
+
+class HomeProductSearchLoaded extends HomeState {
+  final List<ProductEntity> searchedProducts;
+  const HomeProductSearchLoaded({required this.searchedProducts});
+
+  @override
+  List<Object> get props => [searchedProducts];
+}

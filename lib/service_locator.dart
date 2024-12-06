@@ -4,6 +4,7 @@ import 'package:ecombloc/features/home/data/repositories/product_repository_impl
 import 'package:ecombloc/features/home/domain/repositories/product_repository.dart';
 import 'package:ecombloc/features/home/domain/usecases/get_all_category_usecase.dart';
 import 'package:ecombloc/features/home/domain/usecases/get_all_product_usecase.dart';
+import 'package:ecombloc/features/home/domain/usecases/get_product_by_category_usecase.dart';
 import 'package:ecombloc/features/home/domain/usecases/get_product_usecase.dart';
 import 'package:get_it/get_it.dart';
 
@@ -21,6 +22,8 @@ Future<void> setup() async {
   sl.registerSingleton<GetAllProductUsecase>(GetAllProductUsecase());
   sl.registerSingleton<GetAllCategoryUsecase>(GetAllCategoryUsecase());
   sl.registerSingleton<GetProductUseCaes>(GetProductUseCaes());
+  sl.registerSingleton<GetProductByCategoryUsecase>(
+      GetProductByCategoryUsecase());
 
   //repositories
   sl.registerLazySingleton<ProductRepository>(

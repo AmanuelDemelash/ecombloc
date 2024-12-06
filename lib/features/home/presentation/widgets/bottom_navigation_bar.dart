@@ -11,6 +11,7 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavCubit, int>(
+      buildWhen: (previous, current) => previous != current,
       builder: (context, state) {
         return NavigationBar(
             selectedIndex: state,

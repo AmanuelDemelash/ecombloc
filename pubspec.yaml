@@ -25,13 +25,18 @@ dependencies:
   logger: ^2.5.0
   cached_network_image: ^3.4.1
   flutter_rating_bar: ^4.0.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  build_runner:
+  bdd_widget_test: ^1.7.4
  
   flutter_lints: ^4.0.0
+  test: ^1.25.7
+  bloc_test: ^9.1.7
+  mockito: ^5.4.4
 
 flutter:
 
