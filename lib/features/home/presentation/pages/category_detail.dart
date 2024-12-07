@@ -32,6 +32,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
             } else if (state is CategoryDetailBlocLoaded) {
               return state.products.isNotEmpty
                   ? GridView.builder(
+                      key: const Key("categorydetail-product-grid"),
                       padding: const EdgeInsets.all(10),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,6 +46,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
                                 context, '/product-detail',
                                 arguments: state.products[index].id),
                             child: ProductCard(
+                              key: const Key("productcard"),
                               productEntity: state.products[index],
                             ),
                           ))

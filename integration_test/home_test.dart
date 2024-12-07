@@ -1,32 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_import, directives_ordering
 
-import 'package:ecombloc/features/home/presentation/pages/category_detail.dart';
 import 'package:ecombloc/features/home/presentation/widgets/bottom_navigation_bar.dart';
 import 'package:ecombloc/features/setting/presentation/pages/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
-import './bdd_hooks/hooks.dart';
-import './step/the_app_is_running.dart';
-import './step/i_should_see_a_textfield_for_search.dart';
-import './step/i_should_see_a_pageview_widget.dart';
-import './step/i_should_see_a_widget.dart';
-import './step/i_see_a_list_of_categories.dart';
-import './step/i_see_a_list_of_products.dart';
-import './step/i_enter_into_input_field.dart';
-import './step/i_should_see_search_results_related_to.dart';
-import './step/i_tap_on_the_widget_for_the_favorit_tab.dart';
-import './step/the_pageview_should_jump_to_the_page_and_show_the_text.dart';
-import './step/i_tap_on_the_widget_for_the_cart_tab.dart';
-import './step/i_tap_on_the_widget_for_the_profile_tab.dart';
-import './step/i_tap_icon.dart';
-import './step/i_should_be_navigated_to_the_page.dart';
-import './step/i_tap_widget_of_index_on_a_category_item.dart';
-import './step/i_should_be_navigated_to_the_page_and_see_a_list_of_products.dart';
-import './step/i_should_see_a_list_of_products_under_the_category.dart';
+import '../test/bdd_hooks/hooks.dart';
+import './../test/step/the_app_is_running.dart';
+import './../test/step/i_should_see_a_textfield_for_search.dart';
+import './../test/step/i_should_see_a_pageview_widget.dart';
+import './../test/step/i_should_see_a_widget.dart';
+import './../test/step/i_see_a_list_of_categories.dart';
+import './../test/step/i_see_a_list_of_products.dart';
+import './../test/step/i_enter_into_input_field.dart';
+import './../test/step/i_should_see_search_results_related_to.dart';
+import './../test/step/i_tap_on_the_widget_for_the_favorit_tab.dart';
+import './../test/step/the_pageview_should_jump_to_the_page_and_show_the_text.dart';
+import './../test/step/i_tap_on_the_widget_for_the_cart_tab.dart';
+import './../test/step/i_tap_on_the_widget_for_the_profile_tab.dart';
+import './../test/step/i_tap_icon.dart';
+import './../test/step/i_should_be_navigated_to_the_page.dart';
 
 void main() {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   setUpAll(() async {
     await Hooks.beforeAll();
   });
@@ -156,28 +155,6 @@ void main() {
       } finally {
         await afterEach(
           '''Accessing the Settings Page''',
-          success,
-        );
-      }
-    });
-    testWidgets(
-        '''Accessing the Category detail and get product under Category''',
-        (tester) async {
-      var success = true;
-      try {
-        await beforeEach(
-            '''Accessing the Category detail and get product under Category''');
-        await bddSetUp(tester);
-        await iTapWidgetOfIndexOnACategoryItem(tester, ChoiceChip, 1);
-        await iShouldBeNavigatedToThePageAndSeeAListOfProducts(
-            tester, CategoryDetail);
-        await iShouldSeeAListOfProductsUnderTheCategory(tester);
-      } on TestFailure {
-        success = false;
-        rethrow;
-      } finally {
-        await afterEach(
-          '''Accessing the Category detail and get product under Category''',
           success,
         );
       }

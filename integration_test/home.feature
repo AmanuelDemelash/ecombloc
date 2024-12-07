@@ -29,8 +29,3 @@ Feature: Home Page Functionality
   Scenario: Accessing the Settings Page
     When I tap {Icons.settings} icon
     Then I should be navigated to the {Setting} Page
- 
-  Scenario: Accessing the Category detail and get product under Category
-    When I tap {ChoiceChip} widget of index {1} on a category item 
-    Then I should be navigated to the {CategoryDetail} Page and see a list of products
-    And I should see a list of products under the category

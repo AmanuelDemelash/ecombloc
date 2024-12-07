@@ -75,12 +75,15 @@ class _ProductPageState extends State<ProductPage> {
                           return const CategoryLoadingShimmer();
                         } else if (state is CategoryLoaded) {
                           return ListView.builder(
+                            key: const ValueKey('categorylist'),
                             scrollDirection: Axis.horizontal,
                             itemCount: state.categories.length,
                             itemBuilder: (context, index) => Padding(
                               padding: const EdgeInsets.only(right: 5),
                               child: ChoiceChip(
+                                key: Key("categoryChip$index"),
                                 label: Text(
+                                  key: Key("category-index$index"),
                                   state.categories[index].title,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),

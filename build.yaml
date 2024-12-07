@@ -1,8 +1,13 @@
-
 targets:
   $default:
+    sources:
+      - integration_test/**   # By default, build runner will not generate code in the integration folder
+      - test/**               # so we override paths for code generation here
+      - lib/**
+      - $package$
     builders:
       bdd_widget_test|featureBuilder:
         options:
           addHooks: true
           hookFolderName: bdd_hooks
+          stepFolderName: step
