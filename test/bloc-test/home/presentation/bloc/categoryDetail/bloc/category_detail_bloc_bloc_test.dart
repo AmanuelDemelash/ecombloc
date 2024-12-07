@@ -4,12 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   late CategoryDetailBlocBloc categoryDetailBloc;
-
+  setUpAll(() {
+    categoryDetailBloc = CategoryDetailBlocBloc();
+  });
   group('Category detail bloc', () {
-    setUpAll(() {
-      categoryDetailBloc = CategoryDetailBlocBloc();
-    });
-
     String categoryName = "jewelery";
 
     blocTest<CategoryDetailBlocBloc, CategoryDetailBlocState>(

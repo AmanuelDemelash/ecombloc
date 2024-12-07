@@ -20,6 +20,7 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
+          key: const Key("appbar"),
           preferredSize: Size(MediaQuery.of(context).size.width, 60),
           child: const AppBarWidget(
             title: "Home",
@@ -36,6 +37,7 @@ class _ProductPageState extends State<ProductPage> {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: TextField(
+                      key: const Key("search"),
                       onChanged: (value) {
                         context
                             .read<HomeBloc>()
@@ -145,6 +147,7 @@ class _ProductPageState extends State<ProductPage> {
                     if (state is HomeProductSearchLoaded) {
                       return state.searchedProducts.isNotEmpty
                           ? GridView.builder(
+                              key: const Key("productlistgrid"),
                               padding: const EdgeInsets.all(10),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(

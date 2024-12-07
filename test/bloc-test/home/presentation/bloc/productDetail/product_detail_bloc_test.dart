@@ -4,12 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   late ProductDetailBloc productDetailBloc;
+  setUpAll(() {
+    productDetailBloc = ProductDetailBloc();
+  });
 
   group('product detail bloc', () {
-    setUpAll(() {
-      productDetailBloc = ProductDetailBloc();
-    });
-
     int productId = 1;
 
     blocTest<ProductDetailBloc, ProductDetailState>(
