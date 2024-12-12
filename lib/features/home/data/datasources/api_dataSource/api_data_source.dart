@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecombloc/core/ApiConstants/ApiUrl.dart';
@@ -19,9 +21,16 @@ class APiDataSourceImple implements ApiDataSource {
   Future<Either<String, List<ProductModel>>> getAllProduct() async {
     try {
       final response = await sl<DioClient>().get(Apiurl.products);
-      return Right((response.data as List)
-          .map((e) => ProductModel.fromJson(e))
-          .toList());
+
+      final products = await Isolate.run(
+        () {
+          return (response.data as List)
+              .map((e) => ProductModel.fromJson(e))
+              .toList();
+        },
+      );
+
+      return Right(products);
     } on DioException catch (e) {
       return Left(e.type.name);
     }
@@ -31,11 +40,18 @@ class APiDataSourceImple implements ApiDataSource {
   Future<Either<String, List<CategoryModel>>> getAllCategory() async {
     try {
       final response = await sl<DioClient>().get(Apiurl.category);
-      return Right((response.data as List)
-          .map(
-            (e) => CategoryModel.fromJson({"title": e}),
-          )
-          .toList());
+
+      final categories = await Isolate.run(
+        () {
+          return (response.data as List)
+              .map(
+                (e) => CategoryModel.fromJson({"title": e}),
+              )
+              .toList();
+        },
+      );
+
+      return Right(categories);
     } on DioException catch (e) {
       return Left(e.type.name);
     }
@@ -57,9 +73,14 @@ class APiDataSourceImple implements ApiDataSource {
     try {
       final response =
           await sl<DioClient>().get("${Apiurl.productInCategory}/$category");
-      return Right((response.data as List)
-          .map((e) => ProductModel.fromJson(e))
-          .toList());
+      final products = await Isolate.run(
+        () {
+          return (response.data as List)
+              .map((e) => ProductModel.fromJson(e))
+              .toList();
+        },
+      );
+      return Right(products);
     } on DioException catch (e) {
       return Left(e.type.name);
     }
