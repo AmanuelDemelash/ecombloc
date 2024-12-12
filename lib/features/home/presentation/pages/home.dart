@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:ecombloc/features/home/presentation/bloc/bottomNav/bottom_nav_cubit.dart';
 import 'package:ecombloc/features/home/presentation/pages/productPage.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +53,9 @@ class AppBarWidget extends StatelessWidget {
     return AppBar(
       title: Text(title),
       actions: [
+        const SizedBox(
+          width: 10,
+        ),
         IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
