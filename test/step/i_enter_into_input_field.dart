@@ -7,7 +7,7 @@ Future<void> iEnterIntoInputField(
   String text,
   TextField index,
 ) async {
-  final textField = find.byKey(Key("search"));
+  final textField = find.byKey(const Key("search"));
 
   await tester.enterText(textField, text);
 }

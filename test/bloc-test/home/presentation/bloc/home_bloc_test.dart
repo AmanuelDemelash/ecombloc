@@ -27,7 +27,7 @@ void main() {
         "handle product search load sccesfully",
         build: () => HomeBloc(),
         act: (bloc) => bloc.add(const HomeProductSearchEvent(title: 'f')),
-        expect: () => [HomeProductSearchLoaded(searchedProducts: [])],
+        expect: () => [const HomeProductSearchLoaded(searchedProducts: [])],
       );
     },
   );

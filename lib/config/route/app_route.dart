@@ -11,7 +11,7 @@ class AppRoute {
     switch (routeSetting.name) {
       case ('/'):
         return MaterialPageRoute(
-          builder: (context) => Home(),
+          builder: (context) => const Home(),
         );
       case ('/product-detail'):
         return MaterialPageRoute(
@@ -23,7 +23,7 @@ class AppRoute {
         return MaterialPageRoute(
             builder: (context) => CategoryDetail(categoryName: args));
       case ('/setting'):
-        return MaterialPageRoute(builder: (context) => Setting());
+        return MaterialPageRoute(builder: (context) => const Setting());
       default:
         return MaterialPageRoute(
           builder: (context) => const Scaffold(

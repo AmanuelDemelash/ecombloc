@@ -17,5 +17,9 @@ void main() {
       act: (bloc) => bloc.add(GetProductDetailEvent(id: productId)),
       expect: () => [ProductDetailLoadingState()],
     );
+
+    tearDown(
+      () => productDetailBloc.close(),
+    );
   });
 }

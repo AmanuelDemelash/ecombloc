@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecombloc/features/home/presentation/bloc/productDetail/product_detail_bloc.dart';
+import 'package:ecombloc/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecombloc/features/home/presentation/widgets/rating_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,53 +21,57 @@ class _ProductDetailState extends State<ProductDetail> {
         appBar: AppBar(
           title: const Text('Product Detail'),
         ),
-        body: BlocProvider(
-          create: (context) =>
-              ProductDetailBloc()..add(GetProductDetailEvent(id: widget.id)),
-          child: BlocBuilder<ProductDetailBloc, ProductDetailState>(
+        body: BlocProvider.value(
+          value: context.read<HomeBloc>(),
+          child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
-              if (state is ProductDetailLoadingState) {
-                return const Center(
-                  child: CupertinoActivityIndicator(),
-                );
-              } else if (state is ProductDetailLoadedState) {
+              // if (state is ProductDetailLoadingState) {
+              //   return const Center(
+              //     child: CupertinoActivityIndicator(),
+              //   );
+              // } else if (state is ProductDetailLoadedState) {
+
+              if (state is HomeProductLoaded) {
                 return SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        CachedNetworkImage(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height / 2,
-                          fit: BoxFit.fill,
-                          imageUrl: state.product.image,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  const CupertinoActivityIndicator(),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
+                        Hero(
+                          tag: Key(widget.id.toString()),
+                          child: CachedNetworkImage(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height / 2,
+                            fit: BoxFit.fill,
+                            imageUrl: state.products[widget.id].image,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) =>
+                                    const CupertinoActivityIndicator(),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
                         ),
                         ListTile(
                           trailing: Text(
-                            "\$${state.product.price}",
+                            "\$${state.products[widget.id].price}",
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           title: Text(
-                            state.product.title,
+                            state.products[widget.id].title,
                             maxLines: 2,
                           ),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(state.product.category),
-                              ratingBar(state.product.rating.rate)
+                              Text(state.products[widget.id].category),
+                              ratingBar(state.products[widget.id].rating.rate)
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Text(state.product.description),
+                          child: Text(state.products[widget.id].description),
                         ),
                         Container(
                           margin: const EdgeInsets.all(10),
@@ -82,12 +86,13 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                   ),
                 );
-              } else if (state is ProductDetailErrorState) {
-                return Center(
-                  child: Text(state.error),
-                );
               }
-              return SizedBox();
+              // } else if (state is ProductDetailErrorState) {
+              //   return Center(
+              //     child: Text(state.error),
+              //   );
+              // }
+              return const SizedBox();
             },
           ),
         ));

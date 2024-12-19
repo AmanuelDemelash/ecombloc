@@ -26,6 +26,10 @@ void main() {
           act: (bloc) => bloc.add(const ChnageThemeEvent(isDark: false)),
           expect: () =>
               [SettingState(isDarkMode: false, themeData: lightTheme)]);
+
+      tearDown(
+        () => settingBloc.close(),
+      );
     },
   );
 }

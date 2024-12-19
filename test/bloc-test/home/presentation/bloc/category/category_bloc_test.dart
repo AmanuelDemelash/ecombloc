@@ -28,5 +28,9 @@ void main() {
     //   act: (bloc) => bloc.add(CategoryLoadEvent()),
     //   expect: () => [CategoryLoaded(categoryEntity)],
     // );
+
+    tearDown(
+      () => categoryBloc.close(),
+    );
   });
 }

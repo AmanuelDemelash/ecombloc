@@ -17,5 +17,9 @@ void main() {
           bloc.add(LoadProductInCategoryEvent(category: categoryName)),
       expect: () => [CategoryDetailBlocLoading()],
     );
+
+    tearDown(
+      () => categoryDetailBloc.close(),
+    );
   });
 }

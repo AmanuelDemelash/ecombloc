@@ -132,9 +132,12 @@ class _ProductPageState extends State<ProductPage> {
                       itemBuilder: (context, index) => GestureDetector(
                             onTap: () => Navigator.pushNamed(
                                 context, '/product-detail',
-                                arguments: state.products[index].id),
-                            child: ProductCard(
-                              productEntity: state.products[index],
+                                arguments: index),
+                            child: Hero(
+                              tag: Key(index.toString()),
+                              child: ProductCard(
+                                productEntity: state.products[index],
+                              ),
                             ),
                           ))
                   : const Center(

@@ -26,7 +26,13 @@ migrate_working_dir/
 **/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
-.flutter-plugins-dependencies
+.flutter-plugins-dabstract class HomeState extends Equatable {
+  const HomeState();
+
+  @override
+  List<Object> get props => [];
+}
+ependencies
 .pub-cache/
 .pub/
 /build/

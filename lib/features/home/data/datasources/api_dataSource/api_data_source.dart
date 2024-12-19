@@ -2,11 +2,12 @@ import 'dart:isolate';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:ecombloc/core/ApiConstants/ApiUrl.dart';
 import 'package:ecombloc/core/network/dio_client.dart';
 import 'package:ecombloc/features/home/data/models/category_model.dart';
 import 'package:ecombloc/features/home/data/models/product_model.dart';
 import 'package:ecombloc/service_locator.dart';
+
+import '../../../../../core/apiConstants/api_url.dart';
 
 abstract class ApiDataSource {
   Future<Either<String, List<ProductModel>>> getAllProduct();
@@ -20,7 +21,7 @@ class APiDataSourceImple implements ApiDataSource {
   @override
   Future<Either<String, List<ProductModel>>> getAllProduct() async {
     try {
-      final response = await sl<DioClient>().get(Apiurl.products);
+      final response = await sl<DioClient>().get(ApiUrl.products);
 
       final products = await Isolate.run(
         () {
@@ -39,7 +40,7 @@ class APiDataSourceImple implements ApiDataSource {
   @override
   Future<Either<String, List<CategoryModel>>> getAllCategory() async {
     try {
-      final response = await sl<DioClient>().get(Apiurl.category);
+      final response = await sl<DioClient>().get(ApiUrl.category);
 
       final categories = await Isolate.run(
         () {
@@ -60,7 +61,7 @@ class APiDataSourceImple implements ApiDataSource {
   @override
   Future<Either<String, ProductModel>> getProduct(int id) async {
     try {
-      final response = await sl<DioClient>().get("${Apiurl.products}/$id");
+      final response = await sl<DioClient>().get("${ApiUrl.products}/$id");
       return Right(ProductModel.fromJson(response.data));
     } on DioException catch (e) {
       return Left(e.type.name);
@@ -72,7 +73,7 @@ class APiDataSourceImple implements ApiDataSource {
       String category) async {
     try {
       final response =
-          await sl<DioClient>().get("${Apiurl.productInCategory}/$category");
+          await sl<DioClient>().get("${ApiUrl.productInCategory}/$category");
       final products = await Isolate.run(
         () {
           return (response.data as List)

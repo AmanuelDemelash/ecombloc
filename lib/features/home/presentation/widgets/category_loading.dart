@@ -11,7 +11,7 @@ class CategoryLoadingShimmer extends StatelessWidget {
         itemCount: 6,
         itemBuilder: (context, index) => Shimmer.fromColors(
             baseColor: Colors.white,
-            highlightColor: Colors.grey.withOpacity(0.5),
+            highlightColor: Colors.grey.withValues(),
             child: Container(
               width: 110,
               height: 10,

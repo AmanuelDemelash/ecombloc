@@ -1,7 +1,6 @@
-import 'dart:isolate';
 
 import 'package:ecombloc/features/home/presentation/bloc/bottomNav/bottom_nav_cubit.dart';
-import 'package:ecombloc/features/home/presentation/pages/productPage.dart';
+import 'package:ecombloc/features/home/presentation/pages/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

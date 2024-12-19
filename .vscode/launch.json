@@ -28,11 +28,7 @@
                 "--dart-define-from-file=env/prod.json"
             ]
         },
-        {
-            "name": "ecombloc",
-            "request": "launch",
-            "type": "dart"
-        },
+    
         {
             "name": "ecombloc (profile mode)",
             "request": "launch",

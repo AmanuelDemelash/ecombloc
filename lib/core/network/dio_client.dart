@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:ecombloc/core/ApiConstants/ApiUrl.dart';
 
+import '../apiConstants/api_url.dart';
 import 'log_intercepters.dart';
 
 class DioClient {
@@ -8,11 +8,11 @@ class DioClient {
   DioClient()
       : _dio = Dio(
           BaseOptions(
-              baseUrl: Apiurl.BaseUrl,
+              baseUrl: ApiUrl.baseUrl,
               headers: {'Content-Type': 'application/json; charset=UTF-8'},
               responseType: ResponseType.json,
-              sendTimeout: const Duration(seconds: 10),
-              receiveTimeout: const Duration(seconds: 10)),
+              sendTimeout: const Duration(seconds: 20),
+              receiveTimeout: const Duration(seconds: 20)),
         )..interceptors.addAll([LoggerInterceptor()]);
 
   // GET METHOD
